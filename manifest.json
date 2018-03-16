@@ -17,7 +17,7 @@
   ],
   "content_scripts": [
     {
-      "matches": ["*://kissanime.ac/*", "*://kisscartoon.ac/*"],
+      "matches": ["*://kissanime.ac/Anime/*", "*://kisscartoon.ac/Cartoon/*", "*://kissasian.ch/Drama/*"],
       "js": [
         "src/inject/inject.js"
       ]

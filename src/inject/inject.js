@@ -4,8 +4,8 @@ chrome.extension.sendMessage({}, function(response) {
 			clearInterval(readyStateCheckInterval);
 
 			const autoplay = (player) => player.addEventListener('ended', () => {
-				window.localStorage.setItem('autoPlayingBefore', location.href);
-				document.getElementById('btnNext').click();
+				window.localStorage.setItem('autoPlayingBefore', location.href + "&pfail=1");
+				window.location.href = document.getElementsByClassName('nexxt')[0].href + "&pfail=1";
 			}, false);
 
 			const is_playing = () => {
@@ -18,8 +18,11 @@ chrome.extension.sendMessage({}, function(response) {
 			};
 
 			const fullscreen = (player) => {
-			
-			console.log("asd");
+				/*
+					TODO: Implement true fullscreen
+					
+					player.webkitRequestFullscreen();
+				*/
 				const offlight = document.getElementById('offlight');
 				offlight.style.setProperty('z-index', '0');
 				offlight.click();
@@ -44,11 +47,22 @@ chrome.extension.sendMessage({}, function(response) {
 					}
 				});
 			};
+					
+			const volume_handler = (player) => player.addEventListener('volumechange', () => {
+				window.localStorage.setItem('volume', player.volume);
+			});
+			
+			const volume = (player) => {
+				player.volume = (window.localStorage.getItem('volume') || 1.0);
+			}
 			
 			const init = () => {
 				let player = document.getElementById('player_html5_html5_api');
 
 				if (player) {
+					volume_handler(player);
+					volume(player);
+					console.log(player.volume);
 					autoplay(player);
 					fullscreen(player);
 				}			
