@@ -1,0 +1,26 @@
+{
+  "name": "Kiss Autoplay",
+  "version": "0.0.1",
+  "manifest_version": 2,
+  "description": "Autoplay next video on Kisscartoon and Kissanime.",
+  "homepage_url": "https://github.com/eNzyOfficial/kissautoplay",
+  "default_locale": "en",
+  "background": {
+    "scripts": [
+      "src/bg/background.js"
+    ],
+    "persistent": true
+  },
+  "permissions": [
+    "*://kissanime.ac/*",
+    "*://kisscartoon.ac/*"
+  ],
+  "content_scripts": [
+    {
+      "matches": ["*://kissanime.ac/*", "*://kisscartoon.ac/*"],
+      "js": [
+        "src/inject/inject.js"
+      ]
+    }
+  ]
+}
