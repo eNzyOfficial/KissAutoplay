@@ -10,7 +10,7 @@ chrome.omnibox.onInputEntered.addListener(function(text) {
 
         case "cartoon":
         case "c":
-            searchURL += 'https://kissanime.ac/Search/?s=';
+            searchURL += 'https://kisscartoon.ac/Search/?s=';
         break;
     }
 
